@@ -1,0 +1,9 @@
+{
+  "name": "react-learn",
+  "version": "1.0.0",
+  "description": "react study",
+  "license": "IBM",
+  "dependencies": {
+    "create-react-app": "^3.4.1"
+  }
+}
