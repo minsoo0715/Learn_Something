@@ -1,2 +1,21 @@
 hello_react/node_modules/*
 node_modules
+/hello_react/.pnp
+/hello_react/.pnp.js
+
+# testing
+/hello_react/coverage
+
+# production
+/hello_react/build/*
+
+# misc
+/hello_react/.DS_Store
+/hello_react/.env.local
+/hello_react/.env.development.local
+/hello_react/.env.test.local
+/hello_react/.env.production.local
+
+/hello_react/npm-debug.log*
+/hello_react/yarn-debug.log*
+/hello_react/yarn-error.log*
