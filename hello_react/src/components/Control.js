@@ -1,26 +1,24 @@
-import React, {Component} from 'react';
+import React from 'react';
 
-class Control extends Component{
-    render() {
-      return (
+  function Control(props) {
+    return (
      
-        <ul>
-          <li><a href="/create" onClick={function(e) {
-            e.preventDefault();
-            this.props.onChangeMode('create')
-          }.bind(this)}>create</a></li>
-          <li><a href="/update" onClick={function(e) {
-            e.preventDefault();
-            this.props.onChangeMode('update')
-          }.bind(this)}>update</a></li>
-          <li><input type="button" value="delete" onClick={function(e) {
-            e.preventDefault();
-            this.props.onChangeMode('delete')
-          }.bind(this)}></input></li>
+      <ul>
+        <li><a href="/create" onClick={function(e) {
+          e.preventDefault();
+          props.onChangeMode('create')
+        }}>create</a></li>
+        <li><a href="/update" onClick={function(e) {
+          e.preventDefault();
+          props.onChangeMode('update')
+        }}>update</a></li>
+        <li><input type="button" value="delete" onClick={function(e) {
+          e.preventDefault();
+          props.onChangeMode('delete')
+        }}></input></li>
 
-        </ul>
-      );
-    }
+      </ul>
+    );
   }
 
   export default Control;
