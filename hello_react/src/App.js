@@ -22,7 +22,7 @@ function App (props) {
     function getReadContent() {
 
       for(var data of contents) {
-        if(data.id === selected_content_id) {
+        if(data.id === Number(selected_content_id)) {
           return data;
         }
       }
