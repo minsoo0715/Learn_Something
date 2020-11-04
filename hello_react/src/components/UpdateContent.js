@@ -1,42 +1,29 @@
-import React, {Component} from 'react'
+import React, {useState} from 'react'
 
-class UpdateContent extends Component{
+function UpdateContent(props) {
+    const [title, setTitle] = useState(props.data.title);
+    const [desc, setDesc] = useState(props.data.desc);
+    const [id, setID] = useState(props.data.id);
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            title:this.props.data.title,
-            desc:this.props.data.desc,
-            id:this.props.data.id
-        }
-        this.inputFormHandler = this.inputFormHandler.bind(this)
-    }
+    return (
+        <article>
+            <h2>Update</h2>
+            <form action="/create_process" method="post" onSubmit={function(e){
+                e.preventDefault();
+            props.onSubmit(id, title, desc);
+                alert('Submit!');
+            }}>
+                <input type="hidden" name="id" value={id}></input>
+                <p><input type="text" name="title" placeholder="title" value={title} onChange={function(e) {setTitle(e.target.value)}}></input></p>
+                <p><textarea name="desc" placeholder="description" value={desc} onChange={function(e) {setDesc(e.target.value)}}></textarea></p>
+                <p><input type="submit" value="완료"></input></p>
+            </form>
 
-    inputFormHandler(e) {
-        this.setState({[e.target.name]:e.target.value});
-    }
-
-    render() {
-        console.log('Content render');
-        console.log(this.props.data);
-
-        return (
-            <article>
-                <h2>Update</h2>
-                <form action="/create_process" method="post" onSubmit={function(e){
-                    e.preventDefault();
-                this.props.onSubmit(this.state.id, this.state.title, this.state.desc);
-                    alert('Submit!');
-                }.bind(this)}>
-                    <input type="hidden" name="id" value={this.state.id}></input>
-                    <p><input type="text" name="title" placeholder="title" value={this.state.title} onChange={this.inputFormHandler}></input></p>
-                    <p><textarea name="desc" placeholder="description" value={this.state.desc} onChange={this.inputFormHandler}></textarea></p>
-                    <p><input type="submit" value="완료"></input></p>
-                </form>
-
-            </article>
-        );  
-    }
+        </article>
+    );  
 }
+
+
+
 
 export default UpdateContent;
