@@ -3,7 +3,7 @@
 
 <ul>
   <li><a href="#Start">1. Start</a></li>
-  <li><a href="#Control">2. Controller</a></li>
+  <li><a href="#Controller">2. Controller</a></li>
 
 </ul>
 
