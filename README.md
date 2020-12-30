@@ -109,6 +109,7 @@ Spring 구조랑 유사
 
 ### HttpCode
 <p>Standard 방식 <strong style="color: red;">recommended</strong></p>
+
 ``` typescript
   @Get()
   @HttpCode(200) //Here
@@ -117,6 +118,7 @@ Spring 구조랑 유사
   }
 ```
 <p>Library-specific 방식 (expressjs)</p>
+
 ``` typescript
   @Get()
   findAll(@Res() response: Response, @Req() request: Request): string{
