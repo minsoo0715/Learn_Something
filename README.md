@@ -113,8 +113,8 @@ Spring 구조랑 유사
 ``` typescript
   @Get()
   @HttpCode(200) //Here
-  findAll(): string{
-    return 'This action returns all data'
+  findAll(@Req() request: Request: string{
+    return `request data ${request.body}`;
   }
 ```
 <p>Library-specific 방식 (expressjs)</p>
