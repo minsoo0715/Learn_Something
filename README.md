@@ -1,14 +1,3 @@
-<style>
-  .item {
-    padding: 2px 6px; 
-    background-color: #f0f2f3;
-    color: #2876d2;
-  }
-
-  td{
-    text-align: center;
-  }
-</style>
 # NestJS
 <p style="font-size:13px;">본 문서는 <a href="https://docs.nestjs.com">공식 문서</a>를 바탕으로 작성됨.</p> 
 
@@ -135,41 +124,41 @@ Spring 구조랑 유사
   </thead>
   <tbody>
     <tr>
-      <td><span class="item">@Request(), @Req()</td>
-      <td><span class="item">req</td>
+      <td>@Request(), @Req()</td>
+      <td>req</td>
     </tr>
     <tr>
-      <td><span class="item">@Response(), @Res()*</span></td>
-      <td><span class="item">res</td>
+      <td><span style="padding: 2px 6px; background-color: #f0f2f3;color: #2876d2;">@Response(), @Res()*</span></td>
+      <td><span style="padding: 2px 6px; background-color: #f0f2f3;color: #2876d2;">res</td>
     </tr>
     <tr>
-      <td><span class="item">@Next()</td>
-      <td><span class="item">next</td>
+      <td><span style="padding: 2px 6px; background-color: #f0f2f3;color: #2876d2;">@Next()</td>
+      <td><span style="padding: 2px 6px; background-color: #f0f2f3;color: #2876d2;">next</td>
     </tr><tr>
-      <td><span class="item">@Session()</td>
-      <td><span class="item">req.session</td>
+      <td><span style="padding: 2px 6px; background-color: #f0f2f3;color: #2876d2;">@Session()</td>
+      <td><span style="padding: 2px 6px; background-color: #f0f2f3;color: #2876d2;">req.session</td>
     </tr><tr>
-      <td><span class="item">@Param(key?: string)</td>
-      <td><span class="item">req.params / req.params[key]</td>
+      <td><span style="padding: 2px 6px; background-color: #f0f2f3;color: #2876d2;">@Param(key?: string)</td>
+      <td><span style="padding: 2px 6px; background-color: #f0f2f3;color: #2876d2;">req.params / req.params[key]</td>
     </tr><tr>
-      <td><span class="item">@Body(key?: string)</td>
-      <td><span class="item">req.body / req.body[key]</td>
+      <td><span style="padding: 2px 6px; background-color: #f0f2f3;color: #2876d2;">@Body(key?: string)</td>
+      <td><span style="padding: 2px 6px; background-color: #f0f2f3;color: #2876d2;">req.body / req.body[key]</td>
     </tr>
     <tr>
-      <td><span class="item">@Query(key?: string)</td>
-      <td><span class="item">req.query / req.query[key]</td>
+      <td><span style="padding: 2px 6px; background-color: #f0f2f3;color: #2876d2;">@Query(key?: string)</td>
+      <td><span style="padding: 2px 6px; background-color: #f0f2f3;color: #2876d2;">req.query / req.query[key]</td>
     </tr>
     <tr>
-      <td><span class="item">@Headers(name?: string)</td>
-      <td><span class="item">req.headers / req.headers[name]</td>
+      <td><span style="padding: 2px 6px; background-color: #f0f2f3;color: #2876d2;">@Headers(name?: string)</td>
+      <td><span style="padding: 2px 6px; background-color: #f0f2f3;color: #2876d2;">req.headers / req.headers[name]</td>
     </tr>
     <tr>
-      <td><span class="item">@Ip()</td>
-      <td><span class="item">req.ip</td>
+      <td><span style="padding: 2px 6px; background-color: #f0f2f3;color: #2876d2;">@Ip()</td>
+      <td><span style="padding: 2px 6px; background-color: #f0f2f3;color: #2876d2;">req.ip</td>
     </tr>
     <tr>
-      <td><span class="item">@HostParam()</td>
-      <td><span class="item">req.hosts</td>
+      <td><span style="padding: 2px 6px; background-color: #f0f2f3;color: #2876d2;">@HostParam()</td>
+      <td><span style="padding: 2px 6px; background-color: #f0f2f3;color: #2876d2;">req.hosts</td>
     </tr>
   </tbody>
 </table>
