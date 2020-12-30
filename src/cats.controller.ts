@@ -1,50 +1,39 @@
-import { Request, Response } from 'express';
 import {
-  Body,
   Controller,
   Get,
-  Header,
-  Param,
-  Post,
   Query,
-  Redirect,
-  Req,
-  Res,
+  Post,
+  Body,
+  Put,
+  Param,
+  Delete,
 } from '@nestjs/common';
-import { CreateCatDto } from './dto';
+import { CreateCatDto, UpdateCatDto, ListAllEntities } from './dto';
 
 @Controller('cats')
 export class CatsController {
-  @Get()
-  //@HttpCode(200) nestjs
-  async findAll(/*@Req() request: Request, @Res() response: Response*/): Promise<
-    any[]
-  > {
-    return [];
-
-    //response.status(404).end(); expressjs
-    //return `request body : ${request.body}`;
-    //return 'This action returns all cats';
+  @Post()
+  create(@Body() createCatDto: CreateCatDto) {
+    return 'This action adds a new cat';
   }
 
-  //   async findAll(): Observable<
-  //     any[]
-  //   > {
-  //     return of([]);
-
-  //   }
-
-  @Post()
-  //@Header('Cache-Control', 'none')
-  async create(@Body() createCatDto: CreateCatDto) {
-    createCatDto.age = 3;
-    createCatDto.breed = 'breed';
-    createCatDto.name = 'name';
-    return 'this action adds a new cat';
+  @Get()
+  findAll(@Query() query: ListAllEntities) {
+    return `This action returns all cats (limit: ${query.limit} items)`;
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string): string {
+  findOne(@Param('id') id: string) {
     return `This action returns a #${id} cat`;
+  }
+
+  @Put(':id')
+  update(@Param('id') id: string, @Body() updateCatDto: UpdateCatDto) {
+    return `This action updates a #${id} cat`;
+  }
+
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return `This action removes a #${id} cat`;
   }
 }

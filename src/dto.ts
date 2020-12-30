@@ -27,3 +27,26 @@ export class CreateCatDto {
     this._breed = breed;
   }
 }
+
+export class UpdateCatDto extends CreateCatDto {
+  private _id: number;
+
+  get id(): number {
+    return this._id;
+  }
+  set id(id) {
+    this._id = id;
+  }
+}
+
+export class ListAllEntities {
+  private _limit;
+
+  get limit(): number {
+    return this.limit;
+  }
+
+  set limit(limit) {
+    this._limit = limit;
+  }
+}
