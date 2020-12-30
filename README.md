@@ -1,11 +1,11 @@
 # NestJS
 <p style="font-size:13px;">본 문서는 <a href="https://docs.nestjs.com">공식 문서</a>를 바탕으로 작성됨.</p> 
 
-<ul>
-  <li><a href="#Start">1. Start</a></li>
-  <li><a href="#Controller">2. Controller</a></li>
+<ol>
+  <li><a href="#Start">Start</a></li>
+  <li><a href="#Controller">Controller</a></li>
 
-</ul>
+</ol>
 
 
 ## Start
