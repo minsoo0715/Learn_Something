@@ -1,73 +1,272 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
-</p>
+<style>
+  .item {
+    padding: 2px 6px; 
+    background-color: #f0f2f3;
+    color: #2876d2;
+  }
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+  td{
+    text-align: center;
+  }
+</style>
+# NestJS
+<p style="font-size:13px;">본 문서는 <a href="https://docs.nestjs.com">공식 문서</a>를 바탕으로 작성됨.</p> 
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Description
+## Start 
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
-## Installation
-
+#### install Nest-cli
 ```bash
-$ npm install
+$ npm i -g @nestjs/cli
+$ nest new project-name
 ```
 
-## Running the app
+<table>
+  <thead>
+    <tr>
+      <th>nestJS</th>
+      <th>ExpressJS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><span class="item">app.controller.ts</td>
+      <td>MVC에서의 컨트롤러</td>
+    </tr>
+    <tr>
+      <td><span class="item">app.controller.spec.ts</span></td>
+      <td>컨트롤러 Unit test 코드</td>
+    </tr>
+    <tr>
+      <td><span class="item">app.module.ts</td>
+      <td>앱 최상단 모듈</td>
+    </tr>
+    <tr>
+      <td><span class="item">app.service.ts</td>
+      <td>MVC에서의 서비스</td>
+    </tr>
+    <tr>
+      <td><span class="item">main.ts</td>
+      <td>앱의 진입점</td>
+    </tr>
+  </tbody>
+</table>
 
-```bash
-# development
-$ npm run start
 
-# watch mode
-$ npm run start:dev
+#### app.module.ts
+```typescript
+import { Module } from '@nestjs/common';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+import { CatsController } from './cats.controller';
+import { AdminController, TestController } from './test.controller';
 
-# production mode
-$ npm run start:prod
+@Module({
+  imports: [],
+  controllers: [AppController, CatsController, TestController, AdminController], //Some controllers
+  providers: [AppService], //Some Providers
+})
+export class AppModule {}
+
 ```
 
-## Test
+#### main.ts
+```typescript
+import { NestFactory } from '@nestjs/core';
+import { NestExpressApplication } from '@nestjs/platform-express';
+import { AppModule } from './app.module';
 
-```bash
-# unit tests
-$ npm run test
+async function bootstrap() {
+  const app = await NestFactory.create<NestExpressApplication>(AppModule);
+  await app.listen(3000);
+}
+bootstrap();
 
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
 ```
 
-## Support
+## Controller
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+### 구조
+```typescript
+@Controller('some') //  routing '/some'
+export class Controller {
+  @Get() // @Get @Post @Delete @Put 
+  someFunction() {
+    return `request to '/some' with Get Method`;
+  }
 
-## Stay in touch
+  @Post()
+  someFunction() {
+    return `request to '/some' with Post Method`;
+  }
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+  @Get('a')
+  someFunction() {
+    return `request to '/some/a with Get Method'`
+  }
+}
+```
+Spring 구조랑 유사
 
-## License
 
-Nest is [MIT licensed](LICENSE).
+### HttpCode
+<p>Standard 방식 <strong style="color: red;">recommended</strong></p>
+``` typescript
+  @Get()
+  @HttpCode(200) //Here
+  findAll(): string{
+    return 'This action returns all data'
+  }
+```
+<p>Library-specific 방식 (expressjs)</p>
+``` typescript
+  @Get()
+  findAll(@Res() response: Response, @Req() request: Request): string{
+    response.status(200).send(`request data ${request.body}`);
+    return;
+  }
+```
+<table>
+  <thead>
+    <tr>
+      <th>nestJS</th>
+      <th>ExpressJS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><span class="item">@Request(), @Req()</td>
+      <td><span class="item">req</td>
+    </tr>
+    <tr>
+      <td><span class="item">@Response(), @Res()*</span></td>
+      <td><span class="item">res</td>
+    </tr>
+    <tr>
+      <td><span class="item">@Next()</td>
+      <td><span class="item">next</td>
+    </tr><tr>
+      <td><span class="item">@Session()</td>
+      <td><span class="item">req.session</td>
+    </tr><tr>
+      <td><span class="item">@Param(key?: string)</td>
+      <td><span class="item">req.params / req.params[key]</td>
+    </tr><tr>
+      <td><span class="item">@Body(key?: string)</td>
+      <td><span class="item">req.body / req.body[key]</td>
+    </tr>
+    <tr>
+      <td><span class="item">@Query(key?: string)</td>
+      <td><span class="item">req.query / req.query[key]</td>
+    </tr>
+    <tr>
+      <td><span class="item">@Headers(name?: string)</td>
+      <td><span class="item">req.headers / req.headers[name]</td>
+    </tr>
+    <tr>
+      <td><span class="item">@Ip()</td>
+      <td><span class="item">req.ip</td>
+    </tr>
+    <tr>
+      <td><span class="item">@HostParam()</td>
+      <td><span class="item">req.hosts</td>
+    </tr>
+  </tbody>
+</table>
+
+### Header
+``` typescript
+  @Post
+  @Header('Cache-Control', none) //Cache-Control <- none
+  someFunction() {
+    return 'set cache-control';
+  }
+```
+
+### Redirect
+``` typescript
+  @Get()
+  @Redirect('https://www.github.com', 302) //함수가 끝나면 redirect
+  //301은 영구적, 302는 일시적
+
+  @Get('repository')
+  @Redirect('https://www.github.com', 302)
+  RepositoryFunction(@Query('id') id:string) {
+    if(id === "minsoo0715") {
+      return {url: 'https://www.github.com/minsoo0715"}; //함수 안에서 redirect target을 바꿈
+    }
+  } 
+```
+
+### Param
+``` typescript
+  @Get(':id')
+  someFunction(@Param('id') id: string):string {
+    return `id Param is ${id}`
+  }
+```
+
+### async
+``` typescript
+  @Get()
+  async findAll(): Promise<any[]> {
+    return [];
+  }
+
+  @Get()
+  findAll(): Observable<any[]> {
+    return of([]);
+  }
+  ```
+
+  ### Dto
+
+  ```typescript
+  export class CreateUserDto() {
+    name: string;
+    age: string;
+    id: string;
+
+    //....getter or setter.. etc..
+  }
+```
+```typescript
+  @Post create(@Body() createUserDto: CreateUserDto) {
+    return 'this acction adds new user';
+  }
+```
+### 현재 코드
+```typescript
+import { Controller, Get, Query, Post, Body, Put, Param, Delete } from '@nestjs/common';
+import { CreateCatDto, UpdateCatDto, ListAllEntities } from './dto';
+
+@Controller('cats')
+export class CatsController {
+  @Post()
+  create(@Body() createCatDto: CreateCatDto) {
+    return 'This action adds a new cat';
+  }
+
+  @Get()
+  findAll(@Query() query: ListAllEntities) {
+    return `This action returns all cats (limit: ${query.limit} items)`;
+  }
+
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return `This action returns a #${id} cat`;
+  }
+
+  @Put(':id')
+  update(@Param('id') id: string, @Body() updateCatDto: UpdateCatDto) {
+    return `This action updates a #${id} cat`;
+  }
+
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return `This action removes a #${id} cat`;
+  }
+}
+```  
+
+
