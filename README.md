@@ -235,7 +235,7 @@ Spring 구조랑 유사
     return 'this acction adds new user';
   }
 ```
-### 현재 코드
+### 현재 코드 (Controller)
 ```typescript
 import { Controller, Get, Query, Post, Body, Put, Param, Delete } from '@nestjs/common';
 import { CreateCatDto, UpdateCatDto, ListAllEntities } from './dto';
@@ -268,5 +268,43 @@ export class CatsController {
   }
 }
 ```  
+
+## Provider(Service)
+
+MVC 구조에서의 Service
+
+### 현재 코드
+<strong>cats.service.ts</strong>
+``` typescript
+import { Injectable } from '@nestjs/common';
+import { Cat } from './interfaces/cat.interface';
+
+@Injectable() //제공자(Provider) 클래스에 붙이는 어노테이션
+export class CatsService {
+  private readonly cats: Cat[] = [];
+
+  create(cat: Cat) {
+    this.cats.push(cat);
+  }
+
+  findAll(): Cat[] {
+    return this.cats;
+  }
+}
+```
+<strong>cats.controller.ts</strong>
+
+``` typescript
+  @Post()
+  async create(@Body() createCatDto: CreateCatDto) { //비동기
+    this.catsService.create(createCatDto);
+  }
+
+  @Get()
+  async findAll() {   //비동기
+    return this.catsService.findAll();
+  }
+```
+
 
 
