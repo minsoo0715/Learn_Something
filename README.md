@@ -306,5 +306,69 @@ export class CatsService {
   }
 ```
 
+###
+
+Injectable()이 있어야 의존성 주입 가능
+
+``` typescript
+@Controller('cats')
+export class CatsController {
+  constructor(private catsService: CatsService) {} //생성자 주입
+  ~ ~ ~
+```
+
+## Middleware
+  ### Controller로 진입하기 전 공통으로 실행되는 것
+  
+<strong>logger.middleware.ts</strong>
+  ``` typescript
+  import { Injectable, NestMiddleware } from '@nestjs/common';
+  import { Request, Response, NextFunction } from 'express';
+
+  @Injectable()
+  export class LoggerMiddleware implements NestMiddleware {
+    use(req: Request, res: Response, next: NextFunction) {
+      console.log('Request');
+      next();
+    }
+  }
+  ```
+
+  <strong>app.module.ts</strong>
+
+  ``` typescript
+  import { Module } from '@nestjs/common';
+  import { AppController } from './app.controller';
+  import { AppService } from './app.service';
+  import { CatsController } from './cats.controller';
+  import { CatsService } from './cats.service';
+  import { AdminController, TestController } from './test.controller';
+  import {LoggerMiddleware} from './logger.middleware.ts'
+
+  @Module({
+    imports: [],
+    controllers: [AppController, CatsController, TestController, AdminController],
+    providers: [AppService, CatsService],
+  })
+
+  export class AppModule implements NestModule {
+    configure(consumer: MiddlewareConsumer) {
+      consumer.apply(LoggerMiddleware).forRoutes('cats')
+      //It excute when request to '/cats' route
+      //consumer.apply(LoggerMiddleware.forRoutes({path: 'cats' method:RequestMethod.Get})) 
+    }
+  }
+```
+  
+``` typescript
+forRoutes({path: 'ab*cd', method: RequestMethod.ALL});
+  //It can use wildcards. 
+  ```
+
+
+
+
+
+
 
 
