@@ -1,34 +1,23 @@
 import { Injectable } from '@nestjs/common';
 import { User } from './user.dto';
+import { UserRepository } from './userLocal.repository';
 
 @Injectable()
 export class UserService {
-  Users: Array<User>;
-  constructor() {
-    this.Users = [];
-  }
+  constructor(private userRepository: UserRepository) {}
+
   CreateUser(user: User) {
-    this.Users.push(user);
+    this.userRepository.insert(user);
     return true;
   }
   UpdateUser(id: string, Updated: User): boolean {
-    const index: number = this.Users.findIndex((element) => (element.id = id));
-    if (index == -1) return false;
-    else {
-      this.Users[index] = Updated;
-      return true;
-    }
+    return this.userRepository.update(id, Updated);
   }
   ReadUser(): Array<User> {
-    return this.Users;
+    return this.userRepository.find();
   }
 
   DeleteUser(id: string): boolean {
-    const index: number = this.Users.findIndex((element) => (element.id = id));
-    if (index == -1) return false;
-    else {
-      this.Users.splice(index, 1);
-      return true;
-    }
+    return this.userRepository.delete(id);
   }
 }

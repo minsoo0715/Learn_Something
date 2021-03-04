@@ -2,7 +2,6 @@ export class CreateCatDto {
   private _name: string;
   private _age: number;
   private _breed: string;
-
   get name() {
     return this._name;
   }
