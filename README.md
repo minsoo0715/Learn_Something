@@ -364,7 +364,35 @@ export class CatsController {
 forRoutes({path: 'ab*cd', method: RequestMethod.ALL});
   //It can use wildcards. 
   ```
+## TESTING
 
+``` typescript
+import { Test, TestingModule } from '@nestjs/testing'; 
+import { INestApplication } from '@nestjs/common';
+import * as request from 'supertest';
+import { AppModule } from './../src/app.module';
+
+describe('AppController (e2e)', () => { //테스트 단위
+  let app: INestApplication; //가상 앱
+
+  beforeEach(async () => {
+    const moduleFixture: TestingModule = await Test.createTestingModule({
+      imports: [AppModule],
+    }).compile(); //AppModule 설정 + 컴파일
+
+    app = moduleFixture.createNestApplication();
+    await app.init();
+  });
+
+  it('/ (GET)', () => {  //테스트 소 단위
+    return request(app.getHttpServer()) //app의 http 서버에 요청 
+      .get('/') //  루트 라우터(경로 설정) post('/')도 동작
+      .expect(200) //상태코드 200 예상
+      .expect('Hello World!'); //리턴 데이터 예상
+  });
+});
+
+```
 
 
 
