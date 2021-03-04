@@ -391,7 +391,94 @@ describe('AppController (e2e)', () => { //테스트 단위
       .expect('Hello World!'); //리턴 데이터 예상
   });
 });
+```
 
+## SQL (typeorm)
+
+### app.module.ts
+
+``` bash
+$ $ npm install --save @nestjs/typeorm typeorm mysql2
+```
+``` typescript
+@Module({
+  imports: [
+    TypeOrmModule.forRoot({
+      type: 'mysql', //db type
+      host: 'localhost',
+      port: 3306,
+      username: 'root', 
+      password: sqlpwd,
+      database: 'test', // db name
+      entities: [User], //entity for use
+      synchronize: true, //synchronize(when there is no table, then it make automatically)
+    }),
+    UsersModule,
+  ],
+
+  controllers: [AppController, CatsController, TestController, AdminController],
+  providers: [AppService, CatsService],
+})
+~ ~ ~
+```
+### ./users/user.module.ts
+``` typescript
+  @Module({
+  imports: [TypeOrmModule.forFeature([User/*entity*/])],
+  controllers: [UsersController],
+  providers: [UsersService],
+})
+```
+
+### ./users/users.service.ts
+``` typescript
+import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm'; //
+import { Repository } from 'typeorm'; //repository object
+import { User } from './users.entitiy'; //entity
+
+@Injectable()
+export class UsersService { 
+  constructor(
+    @InjectRepository(User) //for use User entity in this service
+    private userRepository: Repository<User>, //Repository Pattern
+  ) {}
+
+  async insert(user: User): Promise<any> {
+    return this.userRepository.insert(user); // Repository< >.insert -> insert data
+  }
+
+  findAll(): Promise<User[]> {
+    return this.userRepository.find(); //Repository< >.find -> find all data
+  }
+
+  findOne(id: string): Promise<User> {
+    return this.userRepository.findOne(id); //Repository< >.findOne(id) -> findById
+  }
+
+  async remove(id: string): Promise<void> {
+    await this.userRepository.delete(id); //Repository< >.delete(id) -> deleteById
+  }
+}
+```
+### ./users/users.controller.ts
+``` typescript
+~ ~ ~
+@Post('register')
+  async register(@Body() user: User) {
+    await this.usersService.insert(user);
+  }
+
+  @Get('getuser')
+  async getuser(@Param() params) {
+    return await this.usersService.findOne(params.id);
+  }
+
+  @Get('getAlluser')
+  async getAlluser() {
+    return await this.usersService.findAll();
+  }
+~ ~ ~
 ```
 
 
