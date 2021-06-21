@@ -52,10 +52,6 @@ declare function create(o:object):void;
 //create({prop:0})
 //create("hi"); 오류 
 
-let someValue:any = "this is a string"
-let strLength:number = (<string>someValue).length; //형 검사를 하지 않음.
-let strLength3:number = (someValue as string).length; // 마찬가지
-let strLength2:number = someValue.length; // 형 검사함 
 
 let alpha:number|string;    //number나 string타입을 가질 수 있음.
 
@@ -67,3 +63,9 @@ let str_:"this is string"|"this is not string";
 type less_than_10 = 1|2|3|4|5|6|7|8|9; //타입 선언
 let num2_:less_than_10;
 
+/*타입 단언 */
+
+let someValue:any = "this is a string"
+let strLength:number = (<string>someValue).length; //형 검사를 하지 않음.
+let strLength3:number = (someValue as string).length; // 마찬가지
+let strLength2:number = someValue.length; // 형 검사함 
