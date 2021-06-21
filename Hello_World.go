@@ -3,7 +3,8 @@ package main
 import "fmt"
 
 func main() {
-	type();
+	condition();
+	types();
 	fmt.Println("Hello World");
 	
 }
