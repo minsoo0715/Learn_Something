@@ -2,12 +2,12 @@
 학습 레포지토리들을 인덱싱하기 위한 레포지토리입니다.
 
 - Markup
-  - [HTML5](https://github.com/minsoo0715/Learn_HTML5)
+  - [HTML5](./Learn_HTML5)
 - lib/framework
-  - [SpringBoot](https://github.com/minsoo0715/Learn_SpringBoot)
-  - [React](https://github.com/minsoo0715/Learn_React)
-  - [Nest.js](https://github.com/minsoo0715/Learn_nestjs)
+  - [SpringBoot](./Learn_SpringBoot)
+  - [React](./Learn_React)
+  - [Nest.js](./Learn_nestjs)
 - lang
-  - [TypeScript](https://github.com/minsoo0715/Learn_TypeScript)
-  - [GoLang](https://github.com/minsoo0715/Learn_Golang)
+  - [TypeScript](./Learn_TypeScript)
+  - [GoLang](./Learn_Golang)
   - [C++ (private)](https://github.com/minsoo0715/Learn_CPP)
