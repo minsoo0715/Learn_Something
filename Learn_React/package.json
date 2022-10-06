@@ -1,0 +1,23 @@
+{
+  "name": "react-learn",
+  "version": "1.0.0",
+  "description": "react study",
+  "license": "IBM",
+  "dependencies": {
+    "create-react-app": "^3.4.1"
+  },
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/minsoo0715/react-learn.git"
+  },
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/minsoo0715/react-learn/issues"
+  },
+  "homepage": "https://github.com/minsoo0715/react-learn#readme"
+}
